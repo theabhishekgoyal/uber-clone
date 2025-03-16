@@ -35,3 +35,34 @@ Registers a new user. The endpoint validates the following:
 ### Error Responses
 - **Status Code:** 400 Bad Request  
   Occurs if required fields are missing or validation fails.
+
+## POST /users/login
+
+### Description
+Logs in an existing user. Validates the provided email and password, returning a JWT token and user details upon successful authentication.
+
+### Request Body
+```json
+{
+  "email": "string (valid email format, required)",
+  "password": "string (min 6 characters, required)"
+}
+```
+
+### Success Response
+- **Status Code:** 200 OK  
+- **Content:** JSON object containing a JWT token and the user object.
+```json
+{
+  "token": "jwt-token-string",
+  "user": { 
+    "...user details..."
+  }
+}
+```
+
+### Error Responses
+- **Status Code:** 400 Bad Request  
+  Occurs if required fields are missing or validation fails.
+- **Status Code:** 401 Unauthorized  
+  Occurs if the email or password is incorrect.
