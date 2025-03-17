@@ -9,11 +9,14 @@ connectToDb();
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 const userRouter = require('./routes/user.route');
+const captainRouter = require('./routes/captain.route');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
+
+app.use('/captains', captainRouter);
 app.use('/users', userRouter);
 
 module.exports  = app;
